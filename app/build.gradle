@@ -1,0 +1,20 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.zxn.printer.demo"
+        minSdkVersion 14
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0.0"
+    }
+}
+
+dependencies {
+    implementation 'com.android.support:appcompat-v7:27.0.0'
+    implementation 'com.android.support:recyclerview-v7:27.0.0'
+//    implementation 'am.util:printer:2.1.0'
+//    implementation 'com.google.zxing:core:3.3.0'
+    implementation project(path: ':android-printer')
+}
