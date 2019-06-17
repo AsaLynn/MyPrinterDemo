@@ -185,20 +185,19 @@ public class PrintCommands {
         return new byte[]{ESC, 37, 1};
     }
 
-    /**
-     * Defines user-defined characters
-     * y specifies the number of bytes in the vertical direction, it always 3.
-     * c1 specifies the beginning character code for the definition, and c2 specifies the final code.
-     * X specifies the number of dots in the horizontal direction.
-     * ESC & y c1 c2 [x1 d1…d(y x x1)]..[ xk d1..d(y x xk)]
-     *
-     * @param c1   32≤c1≤c2≤126
-     * @param c2   32≤c1≤c2≤126
-     * @param dots 0 ≤ x ≤ 12 Font A (when font A (12 x 24) is selected)
-     *             0 ≤ x ≤ 9 Font B (when font B (9 x 17) is selected)
-     *             0 ≤ d1 ... d(y x xk) ≤ 255
-     * @return command
-     */
+
+//     * Defines user-defined characters
+//     * y specifies the number of bytes in the vertical direction, it always 3.
+//     * c1 specifies the beginning character code for the definition, and c2 specifies the final code.
+//     * X specifies the number of dots in the horizontal direction.
+//     * ESC & y c1 c2 [x1 d1…d(y x x1)]..[ xk d1..d(y x xk)]
+//     *
+//     * @param c1   32≤c1≤c2≤126
+//     * @param c2   32≤c1≤c2≤126
+//     * @param dots 0 ≤ x ≤ 12 Font A (when font A (12 x 24) is selected)
+//     *             0 ≤ x ≤ 9 Font B (when font B (9 x 17) is selected)
+//     *             0 ≤ d1 ... d(y x xk) ≤ 255
+
     public static byte[] defineUserDefinedCharacters(int c1, int c2, byte[] dots) {
         byte[] part = new byte[]{ESC, 38, 3, (byte) c1, (byte) c2};
         byte[] destination = new byte[part.length + dots.length];
@@ -1143,38 +1142,38 @@ public class PrintCommands {
         return new byte[]{GS, 40, 107, 3, 0, 49, 67, (byte) n};
     }
 
-    /**
-     * Selects the error correction level for QR code.
-     * n     fuction                             Recovery Capacity %(approx.)
-     * 48    Selects Error correction level L    7
-     * 49    Selects Error correction level M    15
-     * 50    Selects Error correction level Q    25
-     * 51    Selects Error correction level H    30
-     * (pL + pH x 256) = 3 (pL=3, pH=0)
-     * cn = 49
-     * fn = 69
-     * GS ( k pL pH cn fn n
-     *
-     * @param n 47<n<52
-     * @return command
-     */
+//    /**
+//     * Selects the error correction level for QR code.
+//     * n     fuction                             Recovery Capacity %(approx.)
+//     * 48    Selects Error correction level L    7
+//     * 49    Selects Error correction level M    15
+//     * 50    Selects Error correction level Q    25
+//     * 51    Selects Error correction level H    30
+//     * (pL + pH x 256) = 3 (pL=3, pH=0)
+//     * cn = 49
+//     * fn = 69
+//     * GS ( k pL pH cn fn n
+//     *
+//     * @param n 47<n<52
+//     * @return command
+//     */
     public static byte[] selectQRCodeErrorCorrectionLevel(int n) {
         return new byte[]{GS, 40, 107, 3, 0, 49, 69, (byte) n};
     }
 
-    /**
-     * Store the QR Code symbol data (d1…dk) in the symbol storage area.
-     * cn = 49
-     * fn = 80
-     * m = 48
-     * GS ( k pL pH cn fn m d1…dk
-     *
-     * @param pL   0≤pL<256,
-     * @param pH   0≤pH<28
-     * @param data 0≤d < 255
-     *             k = (pL + pH* 256) - 3
-     * @return command
-     */
+//    /**
+//     * Store the QR Code symbol data (d1…dk) in the symbol storage area.
+//     * cn = 49
+//     * fn = 80
+//     * m = 48
+//     * GS ( k pL pH cn fn m d1…dk
+//     *
+//     * @param pL   0≤pL<256,
+//     * @param pH   0≤pH<28
+//     * @param data 0≤d < 255
+//     *             k = (pL + pH* 256) - 3
+//     * @return command
+//     */
     public static byte[] storeQRCodeDataInTheSymbolStorageArea(int pL, int pH, byte[] data) {
         byte[] part = new byte[]{GS, 40, 107, (byte) pL, (byte) pH, 49, 80, 48};
         byte[] destination = new byte[part.length + data.length];
@@ -1183,17 +1182,17 @@ public class PrintCommands {
         return destination;
     }
 
-    /**
-     * Encodes and prints the QR Code symbol data in the symbol storage area using the process of
-     * <Store the data >.
-     * (pL + pH x 256) = 3 (pL=3, pH=0)
-     * cn = 49
-     * fn = 81
-     * m = 48
-     * GS ( k pL pH cn fn m
-     *
-     * @return command
-     */
+//    /**
+//     * Encodes and prints the QR Code symbol data in the symbol storage area using the process of
+//     * <Store the data >.
+//     * (pL + pH x 256) = 3 (pL=3, pH=0)
+//     * cn = 49
+//     * fn = 81
+//     * m = 48
+//     * GS ( k pL pH cn fn m
+//     *
+//     * @return command
+//     */
     public static byte[] printQRCodeSymbolDataInTheSymbolStorageArea() {
         return new byte[]{GS, 40, 107, 3, 0, 49, 81, 48};
     }
