@@ -8,7 +8,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 27
         versionCode 1
-        versionName "1.0.0"
+        versionName "1.0.1"
     }
 
     buildTypes {
@@ -22,7 +22,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api 'com.google.zxing:core:3.3.2'
+    //api 'com.google.zxing:core:3.3.2'
+    api 'com.zxn.zxing:CustomUIZxing:1.0.4'
 }
 
 apply plugin: 'com.github.dcendents.android-maven'
@@ -31,7 +32,7 @@ def siteUrl = 'https://github.com/zhang721688/MyPrinterDemo'
 def gitUrl = 'https://github.com/zhang721688/MyPrinterDemo.git'
 def libName = "android-printer"
 group = "com.zxn.printer"
-version = "1.0.0"
+version = "1.0.1"
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     classifier = 'sources'

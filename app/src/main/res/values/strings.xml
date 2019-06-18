@@ -45,4 +45,6 @@
     <string name="printer_result_message_6">必要的参数不能为空！</string>
     <string name="printer_result_message_7">关闭Socket出错！</string>
     <string name="printer_result_message_8">打印失败！</string>
+    <string name="printer_title_qrcode">二维码打印</string>
+    <string name="printer_title_one_code">一维码打印</string>
 </resources>

@@ -9,14 +9,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Toast;
@@ -24,16 +25,39 @@ import android.widget.Toast;
 import com.zxn.printer.PrinterWriter;
 import com.zxn.printer.PrinterWriter58mm;
 import com.zxn.printer.PrinterWriter80mm;
+import com.zxn.printer.demo.dialogs.BluetoothCodeDgFrag;
 import com.zxn.printer.demo.dialogs.BluetoothTestDialogFragment;
-import com.zxn.printer.demo.dialogs.IPTestDialogFragment;
+import com.zxn.printer.demo.dialogs.IPTestCodeDgFrag;
+import com.zxn.zxing.activity.CodeUtils;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public class PrinterActivity extends AppCompatActivity implements
+/**
+ * Created by zxn on 2019-6-18 9:54:26.
+ */
+public class PrinterCodeActivity extends AppCompatActivity implements
         RadioGroup.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener, View.OnClickListener {
+
+    private static final String ARG_PARAM1 = "param1";
+    @BindView(R.id.iv_code)
+    ImageView ivCode;
+    private String mParam1;
+
+    public static void jumpTo(Context context, String param1) {
+        Intent intent = new Intent(context, PrinterCodeActivity.class);
+        intent.putExtra(ARG_PARAM1, param1);
+        context.startActivity(intent);
+    }
+
+    public static void jumpTo(Context context) {
+        Intent intent = new Intent(context, PrinterCodeActivity.class);
+        context.startActivity(intent);
+    }
 
     private static final String FRAGMENT_IP = "ip";
     private static final String FRAGMENT_BLUETOOTH = "bluetooth";
-    private PrinterActivity me = this;
+    private PrinterCodeActivity me = this;
     private EditText edtWidth;
     private EditText edtQRCode;
     private int type = PrinterWriter80mm.TYPE_80;
@@ -73,15 +97,16 @@ public class PrinterActivity extends AppCompatActivity implements
 
     };
 
-    public static void jumpTo(Context context) {
-        Intent intent = new Intent(context, PrinterActivity.class);
-        context.startActivity(intent);
-    }
-
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_printer);
+        mParam1 = getIntent().getStringExtra(ARG_PARAM1);
+        setContentView(R.layout.activity_printer_code);
+        ButterKnife.bind(this);
+
+        Bitmap bitmap = CodeUtils.createBarcode("593066063", 1000, 100, false);
+        ivCode.setImageBitmap(bitmap);
+
         Toolbar mToolbar = findViewById(R.id.printer_toolbar);
         if (mToolbar != null) {
             setSupportActionBar(mToolbar);
@@ -166,7 +191,7 @@ public class PrinterActivity extends AppCompatActivity implements
             ft.remove(prev);
         }
         ft.addToBackStack(null);
-        IPTestDialogFragment fragment = IPTestDialogFragment
+        IPTestCodeDgFrag fragment = IPTestCodeDgFrag
                 .getFragment(type, width, height, strQRCode);
         fragment.show(ft, FRAGMENT_IP);
     }
@@ -201,7 +226,7 @@ public class PrinterActivity extends AppCompatActivity implements
             ft.remove(prev);
         }
         ft.addToBackStack(null);
-        BluetoothTestDialogFragment fragment = BluetoothTestDialogFragment
+        BluetoothCodeDgFrag fragment = BluetoothCodeDgFrag
                 .getFragment(type, width, height, strQRCode);
         fragment.show(ft, FRAGMENT_BLUETOOTH);
     }
@@ -237,7 +262,6 @@ public class PrinterActivity extends AppCompatActivity implements
         requestBluetoothOn.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 120);
         startActivity(requestBluetoothOn);
     }
-
 
 
     @Override
