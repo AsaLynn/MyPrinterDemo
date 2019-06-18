@@ -8,7 +8,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 27
         versionCode 1
-        versionName "1.0.1"
+        versionName "1.0.2"
     }
 
     buildTypes {
@@ -32,7 +32,7 @@ def siteUrl = 'https://github.com/zhang721688/MyPrinterDemo'
 def gitUrl = 'https://github.com/zhang721688/MyPrinterDemo.git'
 def libName = "android-printer"
 group = "com.zxn.printer"
-version = "1.0.1"
+version = "1.0.2"
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     classifier = 'sources'

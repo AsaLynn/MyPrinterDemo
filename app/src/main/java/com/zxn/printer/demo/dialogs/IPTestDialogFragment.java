@@ -20,7 +20,7 @@ import com.zxn.printer.PrinterWriter80mm;
 import com.zxn.printer.demo.R;
 import com.zxn.printer.demo.data.TestPrintDataMaker;
 import com.zxn.printer.demo.util.InputMethodUtils;
-import com.zxn.printer.demo.util.StringUtils;
+import com.zxn.printer.util.StrUtil;
 
 /**
  * 地址选择对话框Fragment
@@ -95,7 +95,7 @@ public class IPTestDialogFragment extends DialogFragment {
                 Toast.makeText(getContext(), R.string.printer_edit_toast_1, Toast.LENGTH_SHORT).show();
                 InputMethodUtils.openInputMethod(edtIp);
                 return;
-            } else if (!StringUtils.isIp(ip)) {
+            } else if (!StrUtil.isIp(ip)) {
                 Toast.makeText(getContext(), R.string.printer_edit_toast_2, Toast.LENGTH_SHORT).show();
                 edtIp.setText(null);
                 InputMethodUtils.openInputMethod(edtIp);

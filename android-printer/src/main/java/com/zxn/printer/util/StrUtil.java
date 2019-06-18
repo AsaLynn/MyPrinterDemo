@@ -1,4 +1,4 @@
-package com.zxn.printer.demo.util;
+package com.zxn.printer.util;
 
 import android.util.Base64;
 
@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  * @author Alex
  */
 @SuppressWarnings("unused")
-public class StringUtils {
+public class StrUtil {
 
 
     /**
@@ -327,7 +327,7 @@ public class StringUtils {
         if (str == null)
             return false;
         for (char c : str.toCharArray()) {
-            if (StringUtils.isChinese(c))
+            if (StrUtil.isChinese(c))
                 return true;
         }
         return false;
