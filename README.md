@@ -1,11 +1,9 @@
-Printer
+AndroidPrinter
 =======
-
-<img src="icon.png" alt="Icon"/>
 
 ESC-POS命令打印辅助库
 
-源码地址：[ProjectX][1]
+感谢源码地址：[ProjectX][1]
 
 [1]: https://github.com/AlexMofer/ProjectX/tree/master/printer
 
@@ -36,14 +34,17 @@ ESC-POS命令打印辅助库
 ```java
 dependencies {
     ...
-    implementation 'am.util:printer:2.1.0'
+   compile 'com.zxn.printer:android-printer:1.0.0'
     ...
 }
 ```
 
 **添加权限:**
 
-添加蓝牙权限```<uses-permission android:name="android.permission.BLUETOOTH" />```或者网络请求权限```<uses-permission android:name="android.permission.INTERNET" />```
+添加蓝牙权限
+```<uses-permission android:name="android.permission.BLUETOOTH" />```
+网络请求权限
+```<uses-permission android:name="android.permission.INTERNET" />```
 
 **实现接口:**
 
@@ -335,3 +336,5 @@ distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
 WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
 License for the specific language governing permissions and limitations under
 the License.
+
+
