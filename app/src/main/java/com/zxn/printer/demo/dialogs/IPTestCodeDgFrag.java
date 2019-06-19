@@ -58,7 +58,8 @@ public class IPTestCodeDgFrag extends DialogFragment {
         IPTestDialog(Context context, int type, int width, int height, String qr) {
             super(context);
             this.type = type;
-            setContentView(R.layout.dlg_printer_ip);
+            setContentView(R.layout.dlg_printer_ip_test);
+
             edtIp = (EditText) findViewById(R.id.printer_edt_ip);
             edtPort = (EditText) findViewById(R.id.printer_edt_port);
             tvState = (TextView) findViewById(R.id.printer_tv_state);
@@ -88,7 +89,7 @@ public class IPTestCodeDgFrag extends DialogFragment {
         }
 
         private void print() {
-            edtIp.setText("192.168.5.212");
+            //edtIp.setText("192.168.5.212");
             String ip = edtIp.getText().toString().trim();
             if (ip.length() <= 0) {
                 Toast.makeText(getContext(), R.string.printer_edit_toast_1, Toast.LENGTH_SHORT).show();
@@ -132,6 +133,7 @@ public class IPTestCodeDgFrag extends DialogFragment {
             }
             executor.setIp(ip, port);
             executor.doPrinterRequestAsync(maker);
+            executor.doPrinterRequest(maker);
         }
 
         @Override

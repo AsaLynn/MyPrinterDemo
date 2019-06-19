@@ -32,6 +32,7 @@ public class PrintSocketHolder {
     private int port = 9100;
     private BluetoothDevice mDevice;
     private Socket socket;
+    //已连接或连接到蓝牙套接字
     private BluetoothSocket bluetoothSocket;
     private OutputStream out;
     private WeakReference<OnStateChangedListener> mListener;
@@ -79,6 +80,15 @@ public class PrintSocketHolder {
 
     public boolean isSocketPrepared() {
         return (bluetoothSocket != null || socket != null) && out != null;
+    }
+
+    /**
+     * 网络端口连接是否准备好.
+     *
+     * @return
+     */
+    public boolean isNetSocketPrepared() {
+        return socket != null && out != null;
     }
 
     public int sendData(List<byte[]> data) {
