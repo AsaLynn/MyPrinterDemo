@@ -152,13 +152,13 @@ public class StrUtil {
             return builder.toString().toUpperCase(Locale.getDefault());
     }
 
-    /**
-     * MD5加码
-     *
-     * @param str         待计算字符串
-     * @param charsetName 编码格式
-     * @return MD5值
-     */
+//    /**
+//     * MD5加码
+//     *
+//     * @param str         待计算字符串
+//     * @param charsetName 编码格式
+//     * @return MD5值
+//     */
     public static String getMD5(String str, String charsetName, boolean lowerCase) {
         try {
             return getMD5(str.getBytes(charsetName), lowerCase);
@@ -167,12 +167,12 @@ public class StrUtil {
         }
     }
 
-    /**
-     * 二进制转十六进制
-     *
-     * @param data 二进制数组
-     * @return 十六进制字符
-     */
+//    /**
+//     * 二进制转十六进制
+//     *
+//     * @param data 二进制数组
+//     * @return 十六进制字符
+//     */
     public static String parseByte2HexStr(byte[] data, boolean lowerCase) {
         if (data == null || data.length <= 0)
             return null;
@@ -208,11 +208,11 @@ public class StrUtil {
         return result;
     }
 
-    /**
-     * 获取长宽
-     *
-     * @param size 长宽
-     */
+//    /**
+//     * 获取长宽
+//     *
+//     * @param size 长宽
+//     */
     public static void getSizeByUrl(String url, int[] size) {
         if (url == null || url.length() <= 0 || size == null || size.length < 2)
             return;

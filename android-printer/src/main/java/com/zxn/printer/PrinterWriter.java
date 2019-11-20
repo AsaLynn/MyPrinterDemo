@@ -265,6 +265,88 @@ public abstract class PrinterWriter {
     }
 
     /**
+     * 一行输出
+     *
+     * @param str1     字符串
+     * @param str2     字符串
+     * @param str3     字符串
+     * @param textSize 文字大小
+     * @throws IOException 异常
+     */
+    public void printInOneLine(String str1, String str2, String str3, int textSize) throws IOException {
+        int lineLength = getLineStringWidth(textSize);
+        int needEmpty = lineLength - (getStringWidth(str1) + getStringWidth(str2) + getStringWidth(str3)) % lineLength;
+        int halfNeedEmpty = needEmpty / 2;
+        String empty = "";
+        while (halfNeedEmpty > 0) {
+            empty += " ";
+            halfNeedEmpty--;
+        }
+        print(str1 + empty + str2 + empty + str3, CHARSET);
+    }
+
+//    /**
+//     * 一行输出
+//     *
+//     * @param str1        字符串
+//     * @param str2        字符串
+//     * @param textSize    文字大小
+//     * @param charsetName 编码方式
+//     * @throws IOException 异常
+//     */
+    public void printInOneLine(String str1, String str2, String str3, int textSize, String charsetName) throws IOException {
+        int lineLength = getLineStringWidth(textSize);
+        int needEmpty = lineLength - (getStringWidth(str1) + getStringWidth(str2) + getStringWidth(str3)) % lineLength;
+        int halfNeedEmpty = needEmpty / 2;
+        String empty = "";
+        while (halfNeedEmpty > 0) {
+            empty += " ";
+            halfNeedEmpty--;
+        }
+        print(str1 + empty + str2 + empty + str3, charsetName);
+    }
+
+    public void printInOneLineAverage(String str1, String str2, String str3, int textSize) throws IOException {
+        //一行的总长度
+        int lineLength = getLineStringWidth(textSize);
+
+        //半行的长度.
+
+        //str1的长度
+        int str1Length = getStringWidth(str1);
+
+        //str2的长度
+        int str2Length = getStringWidth(str2);
+
+        //str3的长度
+        int str3Length = getStringWidth(str3);
+
+        //空白串的总长度
+        //int emptyLength = lineLength - (str1Length + str2Length + str3Length) % lineLength;
+
+        int emptyLength1 = lineLength/2 - str1Length - str2Length/2;
+        int emptyLength2 = lineLength - str1Length - str2Length - str3Length - emptyLength1;
+        String empty1 = "";
+        while (emptyLength1 > 0) {
+            empty1 += " ";
+            emptyLength1--;
+        }
+        String empty2 = "";
+        while (emptyLength2 > 0) {
+            empty2 += " ";
+            emptyLength2--;
+        }
+
+//        int halfNeedEmpty = emptyLength / 2;
+//        String empty = "";
+//        while (halfNeedEmpty > 0) {
+//            empty += " ";
+//            halfNeedEmpty--;
+//        }
+        print(str1 + empty1 + str2 + empty2 + str3, CHARSET);
+    }
+
+    /**
      * 获取一行字符串长度
      *
      * @param textSize 文字大小

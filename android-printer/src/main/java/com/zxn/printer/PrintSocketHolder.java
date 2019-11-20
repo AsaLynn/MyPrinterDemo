@@ -140,9 +140,9 @@ public class PrintSocketHolder {
         return getOutputStream();
     }
 
-    /**
-     * 销毁
-     */
+//    /**
+//     * 销毁
+//     */
     public int closeSocket() {
         onPrinterStateChanged(STATE_4);
         boolean error = false;
