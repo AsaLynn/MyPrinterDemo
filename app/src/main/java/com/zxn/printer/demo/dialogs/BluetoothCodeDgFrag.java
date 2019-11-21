@@ -38,6 +38,17 @@ public class BluetoothCodeDgFrag extends DialogFragment {
     private final BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
     private IPTestDialog dialog;
 
+    public static BluetoothCodeDgFrag getFragment(int type, int width, int height, String qr) {
+        BluetoothCodeDgFrag fragment = new BluetoothCodeDgFrag();
+        Bundle bundle = new Bundle();
+        bundle.putInt(EXTRA_TYPE, type);
+        bundle.putInt(EXTRA_WIDTH, width);
+        bundle.putInt(EXTRA_HEIGHT, height);
+        bundle.putString(EXTRA_QR, qr);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         int type = getArguments().getInt(EXTRA_TYPE, PrinterWriter80mm.TYPE_80);
@@ -95,8 +106,9 @@ public class BluetoothCodeDgFrag extends DialogFragment {
         }
 
         void updateAdapter() {
-            if (bluetoothAdapter != null && bluetoothAdapter.isEnabled())
+            if (bluetoothAdapter != null && bluetoothAdapter.isEnabled()) {
                 bondedAdapter.setDevices(bluetoothAdapter.getBondedDevices());
+            }
         }
 
         private void setEditable(boolean editable) {
@@ -199,16 +211,5 @@ public class BluetoothCodeDgFrag extends DialogFragment {
             if (executor != null)
                 executor.closeSocket();
         }
-    }
-
-    public static BluetoothCodeDgFrag getFragment(int type, int width, int height, String qr) {
-        BluetoothCodeDgFrag fragment = new BluetoothCodeDgFrag();
-        Bundle bundle = new Bundle();
-        bundle.putInt(EXTRA_TYPE, type);
-        bundle.putInt(EXTRA_WIDTH, width);
-        bundle.putInt(EXTRA_HEIGHT, height);
-        bundle.putString(EXTRA_QR, qr);
-        fragment.setArguments(bundle);
-        return fragment;
     }
 }
