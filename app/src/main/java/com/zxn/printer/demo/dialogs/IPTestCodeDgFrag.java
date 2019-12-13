@@ -75,8 +75,13 @@ public class IPTestCodeDgFrag extends DialogFragment {
             btnPrint.setEnabled(editable);
         }
 
-        private void setState(int resId) {
-            tvState.setText(resId);
+        private void setState(final int resId) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    tvState.setText(resId);
+                }
+            });
         }
 
         @Override
@@ -132,8 +137,14 @@ public class IPTestCodeDgFrag extends DialogFragment {
                 executor.setOnPrintResultListener(this);
             }
             executor.setIp(ip, port);
-            executor.doPrinterRequestAsync(maker);
-            executor.doPrinterRequest(maker);
+            //executor.doPrinterRequestAsync(maker);
+            //executor.doPrinterRequest(maker);//同步打印.
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    executor.doPrinterRequest(maker);
+                }
+            }).start();
         }
 
         @Override
