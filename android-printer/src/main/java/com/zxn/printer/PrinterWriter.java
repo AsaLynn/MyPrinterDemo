@@ -226,6 +226,22 @@ public abstract class PrinterWriter {
     }
 
     /**
+     * 写入一条横线*线.
+     *
+     * @throws IOException 异常
+     */
+    public void printAsteriskLine() throws IOException {
+        int length = getLineWidth();
+        StringBuilder mStringBuilder = new StringBuilder();
+        while (length > 0) {
+            mStringBuilder.append(String.format("%-1s", "*"));
+            mStringBuilder.append(String.format("%-1s", "*"));
+            length--;
+        }
+        print(mStringBuilder.toString());
+    }
+
+    /**
      * 获取横线线宽
      *
      * @return 横线线宽

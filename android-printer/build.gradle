@@ -1,14 +1,14 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0.3"
+        targetSdkVersion 29
+        versionCode 4
+        versionName "1.0.4"
     }
 
     buildTypes {
@@ -31,7 +31,7 @@ def siteUrl = 'https://github.com/zhang721688/MyPrinterDemo'
 def gitUrl = 'https://github.com/zhang721688/MyPrinterDemo.git'
 def libName = "android-printer"
 group = "com.zxn.printer"
-version = "1.0.3"
+version = "1.0.4"
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     classifier = 'sources'
